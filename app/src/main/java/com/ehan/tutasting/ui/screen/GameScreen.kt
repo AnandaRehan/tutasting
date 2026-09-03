@@ -64,7 +64,7 @@ fun GameScreen(
         modifier = modifier
             .fillMaxSize()
     ) {
-        if (p1 == null && p2 == null) {
+        if (p1 == null || p2 == null) {
             Text(text = if (p1 == null) { "Player 1"} else { "Player 2" })
             Button(
                 onClick = {
@@ -108,10 +108,11 @@ fun GameScreen(
             }
             
             if ((p1 == Pilihan.BATU && p2 == Pilihan.GUNTING) || (p1 == Pilihan.KERTAS && p2 == Pilihan.BATU) || (p1 == Pilihan.GUNTING && p2 == Pilihan.KERTAS)) {
-                tulisan = "P2 Win"
-            } else {
                 tulisan = "P1 Win"
+            } else {
+                tulisan = "P2 Win"
             }
+            Text(text = tulisan)
         }
     }
 }
