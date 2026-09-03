@@ -103,15 +103,14 @@ fun GameScreen(
         } else {
             Text(text = "P1 " + p1.toString())
             Text(text = "P2 " + p2.toString())
-            var tulisan: String
-            if (p1 == p2) {
-                tulisan = "Draw"
-            }
-            
+            var tulisan: String = ""
+
             if ((p1 == Pilihan.BATU && p2 == Pilihan.GUNTING) || (p1 == Pilihan.KERTAS && p2 == Pilihan.BATU) || (p1 == Pilihan.GUNTING && p2 == Pilihan.KERTAS)) {
                 tulisan = "P1 Win"
-            } else {
+            } else if (p1 != p2) {
                 tulisan = "P2 Win"
+            } else {
+                tulisan = "Draw"
             }
             Text(text = tulisan)
             Button(
@@ -125,6 +124,8 @@ fun GameScreen(
         }
         Button(
             onClick = {
+                p1 = null
+                p2 = null
                 onMainMenu()
             }
         ) {
