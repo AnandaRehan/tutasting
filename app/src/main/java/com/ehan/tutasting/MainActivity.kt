@@ -144,7 +144,11 @@ fun greeting(
                 )
              }
             ScreenPhase.PLAYING -> {
-                GameScreen()
+                GameScreen(
+                    onMainMenu = {
+                        viewModel.mainMenu()
+                    }
+                )
             }
             else -> {
                 Text(text = "else")

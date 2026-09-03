@@ -16,4 +16,7 @@ class GameEngine() : Parcelable {
     fun startNewGame() {
         _screenPhase.value = ScreenPhase.PLAYING
     }
+    fun toMainMenu() {
+        _screenPhase.value = ScreenPhase.MAINMENU
+    }
 }

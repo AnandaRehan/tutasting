@@ -20,4 +20,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun startNewGame() {
         engine.startNewGame()
     }
+    fun mainMenu() {
+        engine.toMainMenu()
+    }
 }

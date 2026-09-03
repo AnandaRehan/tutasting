@@ -54,7 +54,8 @@ import com.ehan.tutasting.model.Pilihan
 
 @Composable
 fun GameScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onMainMenu: () -> Unit
 ) {
     val context: Context = LocalContext.current
     var p1: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
@@ -113,6 +114,21 @@ fun GameScreen(
                 tulisan = "P2 Win"
             }
             Text(text = tulisan)
+            Button(
+                onClick = {
+                    p1 = null
+                    p2 = null
+                }
+            ) {
+                Text(text = "Ulang")
+            }
+        }
+        Button(
+            onClick = {
+                onMainMenu()
+            }
+        ) {
+            Text(text = "Ke MainMenu")
         }
     }
 }
