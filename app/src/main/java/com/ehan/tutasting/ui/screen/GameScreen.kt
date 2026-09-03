@@ -106,7 +106,8 @@ fun GameScreen(
             if (p1 == p2) {
                 tulisan = "Draw"
             }
-            if ((p1 == Pilihan.BATU && p2 == Pilihan.KERTAS) || (p1 == Pilihan.KERTAS && p2 == Pilihan.GUNTING) || (p1 == Pilihan.GUNTING && p2 == Pilihan.BATU)) {
+            
+            if (Pilihan.firstWin(p2, p1)) {
                 tulisan = "P2 Win"
             } else {
                 tulisan = "P1 Win"
