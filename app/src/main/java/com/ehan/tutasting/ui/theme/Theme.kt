@@ -10,6 +10,26 @@ import androidx.compose.runtime.Composable
 // import androidx.compose.ui.platform.LocalView
 // import androidx.core.view.WindowCompat
 
+private val TutastingDarkColorScheme = darkColorScheme(
+  primary = CrimsonPrimary,
+  onPrimary = Color.White,
+  primaryContainer = CrimsonDark,
+  onPrimaryContainer = GoldAccent,
+  secondary = GoldAccent,
+  onSecondary = Color.Black,
+  secondaryContainer = DarkSurfaceElevated,
+  onSecondaryContainer = GoldGlow,
+  tertiary = CyanMana,
+  onTertiary = Color.Black,
+  background = DarkBackground,
+  onBackground = TextPrimary,
+  surface = DarkSurface,
+  onSurface = TextPrimary,
+  surfaceVariant = DarkSurfaceElevated,
+  onSurfaceVariant = TextSecondary,
+  outline = DarkSurfaceBorder
+)
+
 @Composable
 fun TutastingTheme(
     dynamicColor: Boolean = true,
@@ -18,7 +38,7 @@ fun TutastingTheme(
     //val context = LocalContext.current
 
     MaterialTheme(
-       // colorScheme = colorScheme,
+        colorScheme = TutastingDarkColorScheme,
         typography = Typography,
         shapes = Shapes,
         content = content
