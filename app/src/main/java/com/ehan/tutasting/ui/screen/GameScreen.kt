@@ -71,7 +71,7 @@ fun GameScreen(
                     if (p1 == null) {
                         p1 = Pilihan.BATU
                     } else {
-                        p2 = Piilhan.BATU
+                        p2 = Pilihan.BATU
                     }
                 }
             ) {
@@ -82,7 +82,7 @@ fun GameScreen(
                     if (p1 == null) {
                         p1 = Pilihan.KERTAS
                     } else {
-                        p2 = Piilhan.KERTAS
+                        p2 = Pilihan.KERTAS
                     }
                 }
             ) {
@@ -93,7 +93,7 @@ fun GameScreen(
                     if (p1 == null) {
                         p1 = Pilihan.GUNTING
                     } else {
-                        p2 = Piilhan.GUNTING
+                        p2 = Pilihan.GUNTING
                     }
                 }
             ) {
@@ -107,7 +107,7 @@ fun GameScreen(
                 tulisan = "Draw"
             }
             
-            if (Pilihan.firstWin(p2, p1)) {
+            if ((p1 == Pilihan.BATU && p2 == Pilihan.GUNTING) || (p1 == Pilihan.KERTAS && p2 == Pilihan.BATU) || (p1 == Pilihan.GUNTING && p2 == Pilihan.KERTAS)) {
                 tulisan = "P2 Win"
             } else {
                 tulisan = "P1 Win"
