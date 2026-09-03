@@ -50,7 +50,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ehan.tutasting.ShowMessage
-import com.ehan.tutasting.model.Piilhan
+import com.ehan.tutasting.model.Pilihan
 
 @Composable
 fun GameScreen(
