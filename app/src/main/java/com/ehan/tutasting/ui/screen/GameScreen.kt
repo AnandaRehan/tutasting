@@ -57,8 +57,8 @@ fun GameScreen(
     modifier: Modifier = Modifier
 ) {
     val context: Context = LocalContext.current
-    var p1: Pilihan? by rememberSaveable { mutableStateOf<Pilihan>?(null) }
-    var p2: Pilihan? by rememberSaveable { mutableStateOf<Pilihan>?(null) }
+    var p1: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
+    var p2: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
 
     Column(
         modifier = modifier
