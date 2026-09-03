@@ -50,24 +50,67 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ehan.tutasting.ShowMessage
+import com.ehan.tutasting.model.Piilhan
 
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier
 ) {
     val context: Context = LocalContext.current
+    var p1: Pilihan? by rememberSaveable { mutableStateOf<Pilihan>?(null) }
+    var p2: Pilihan? by rememberSaveable { mutableStateOf<Pilihan>?(null) }
 
     Column(
         modifier = modifier
             .fillMaxSize()
     ) {
-        Text(text = "Halooww")
-        Button(
-            onClick = {
-                ShowMessage(context, "Ukehh")
+        if (p1 == null && p2 == null) {
+            Text(text = if (p1 == null) { "Player 1"} else { "Player 2" })
+            Button(
+                onClick = {
+                    if (p1 == null) {
+                        p1 = Pilihan.BATU
+                    } else {
+                        p2 = Piilhan.BATU
+                    }
+                }
+            ) {
+                Text(text = "Batu")
             }
-        ) {
-            Text(text = "Tombol")
+            Button(
+                onClick = {
+                    if (p1 == null) {
+                        p1 = Pilihan.KERTAS
+                    } else {
+                        p2 = Piilhan.KERTAS
+                    }
+                }
+            ) {
+                Text(text = "KERTAS")
+            }
+            Button(
+                onClick = {
+                    if (p1 == null) {
+                        p1 = Pilihan.GUNTING
+                    } else {
+                        p2 = Piilhan.GUNTING
+                    }
+                }
+            ) {
+                Text(text = "GUNTING")
+            }
+        } else {
+            Text(text = "P1 " + p1.toString())
+            Text(text = "P2 " + p2.toString())
+            var tulisan: String
+            if (p1 == p2) {
+                tulisan = "Draw"
+            }
+            if ((p1 == Pilihan.BATU && p2 == Pilihan.KERTAS) || (p1 == Pilihan.KERTAS && p2 == Pilihan.GUNTING) || (p1 == Pilihan.GUNTING && p2 == Pilihan.BATU)) {
+                tulisan = "P2 Win"
+            } else {
+                tulisan = "P1 Win"
+            }
         }
     }
 }

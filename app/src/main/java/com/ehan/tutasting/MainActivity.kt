@@ -129,20 +129,26 @@ fun greeting(
     fun _refreshScreen() {
         refreshScreen = !refreshScreen
     }
-
-    when (screenPhase) {
-        ScreenPhase.MAINMENU -> {
-            MainMenu(
-                onStartGame = {
-                    viewModel.startNewGame()
-                }
-            )
-        }
-        ScreenPhase.PLAYING -> {
-            GameScreen()
-        }
-        else -> {
-            Text(text = "else")
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .systemBarsPadding()
+            .padding(21.dp)
+    ) {
+        when (screenPhase) {
+            ScreenPhase.MAINMENU -> {
+                MainMenu(
+                    onStartGame = {
+                        viewModel.startNewGame()
+                    }
+                )
+             }
+            ScreenPhase.PLAYING -> {
+                GameScreen()
+            }
+            else -> {
+                Text(text = "else")
+            }
         }
     }
 }

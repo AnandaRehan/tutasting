@@ -3,7 +3,8 @@ package com.ehan.tutasting.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
-enum class ScreenPhase {
+@Parcelize
+enum class ScreenPhase() : Parcelable {
     SPLASH,
     LOADING,
     MAINMENU,
@@ -11,4 +12,11 @@ enum class ScreenPhase {
     PLAYING,
     SETTINGS,
     PAUSED
+}
+
+@Parcelize
+enum data class Pilihan() : Parcelable{
+    BATU,
+    KERTAS,
+    GINTING
 }
