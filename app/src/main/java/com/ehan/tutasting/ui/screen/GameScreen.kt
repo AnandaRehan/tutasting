@@ -1,4 +1,4 @@
-package com.ehan.tutasting.screen
+package com.ehan.tutasting.ui.screen
 
 import android.content.Context
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -59,8 +59,7 @@ fun MainMenu(
 
     Column(
         modifier = modifier
-            .fillMaxSize,
-        contentAlignment = Alignment.Center
+            .fillMaxSize()
     ) {
         Text(text = "Halooww")
         Button(

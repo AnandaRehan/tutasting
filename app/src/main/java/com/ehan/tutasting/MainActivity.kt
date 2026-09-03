@@ -46,7 +46,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.mutableBooleanStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -116,7 +115,7 @@ fun greeting(
 
     val screenPhase by viewModel.screenPhase.collectAsStateWithLifecycle(lifecycleOwner = lifecycleOwner)
 
-    var refreshScreen: Boolean by rememberSaveable { mutableBooleanStateOf(false) }
+    var refreshScreen: Boolean by rememberSaveable { mutableStateOf(false) }
 
     fun showMessage(
         text: String = "",

@@ -1,4 +1,4 @@
-package com.ehan.tutasting.screen 
+package com.ehan.tutasting.ui.screen 
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
@@ -48,7 +48,6 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ehan.tutasting.SettingsViewModel
 
 @Composable
 fun MainMenu(
@@ -57,8 +56,7 @@ fun MainMenu(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize,
-        contentAlignment = Alignment.Center
+            .fillMaxSize()
     ) {
         Button(
             onClick = {
