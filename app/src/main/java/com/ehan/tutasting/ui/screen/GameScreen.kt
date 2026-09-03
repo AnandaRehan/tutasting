@@ -52,7 +52,7 @@ import androidx.compose.ui.unit.sp
 import com.ehan.tutasting.ShowMessage
 
 @Composable
-fun MainMenu(
+fun GameScreen(
     modifier: Modifier = Modifier
 ) {
     val context: Context = LocalContext.current
@@ -66,6 +66,8 @@ fun MainMenu(
             onClick = {
                 ShowMessage(context, "Ukehh")
             }
-        )
+        ) {
+            Text(text = "Tombol")
+        }
     }
 }

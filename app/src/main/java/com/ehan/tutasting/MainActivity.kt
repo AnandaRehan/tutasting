@@ -134,12 +134,15 @@ fun greeting(
         ScreenPhase.MAINMENU -> {
             MainMenu(
                 onStartGame = {
-                    viewWodel.startNewGame()
+                    viewModel.startNewGame()
                 }
             )
         }
         ScreenPhase.PLAYING -> {
             GameScreen()
+        }
+        else -> {
+            Text(text = "else")
         }
     }
 }
