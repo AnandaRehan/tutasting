@@ -32,5 +32,5 @@ enum class Pilihan(
     KERTAS("KERTAS", "B"),
     GUNTING("GUNTING", "C");
 
-    fun firstWin(a: Pilihan, b: Pilihan): Boolean = if ((p1 == Pilihan.BATU && p2 == Pilihan.GUNTING) || (p1 == Pilihan.KERTAS && p2 == Pilihan.BATU) || (p1 == Pilihan.GUNTING && p2 == Pilihan.KERTAS)) { true } else { false }
+    fun firstWin(a: Pilihan, b: Pilihan): Boolean = if ((a == Pilihan.BATU && b == Pilihan.GUNTING) || (a == Pilihan.KERTAS && b == Pilihan.BATU) || (a == Pilihan.GUNTING && b == Pilihan.KERTAS)) { true } else { false }
 }
