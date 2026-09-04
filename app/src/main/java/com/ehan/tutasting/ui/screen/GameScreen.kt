@@ -58,7 +58,7 @@ import com.ehan.tutasting.model.Pilihan
 fun GameScreen(
     modifier: Modifier = Modifier,
     onTakeRandom: () -> Pilihan,
-    onCekWin: (PlayerGame, PlayerGame) -> PlayerGame?,
+    onCekWin: (Pilihan, Pilihan) -> Pilihan?,
     onMainMenu: () -> Unit
     // Cara alternatif jika ingin tetap ada nama labelnya
 // onCekWin: ((a: PlayerGame, b: PlayerGame) -> PlayerGame?), 

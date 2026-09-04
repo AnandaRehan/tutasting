@@ -146,7 +146,7 @@ fun greeting(
             ScreenPhase.PLAYING -> {
                 GameScreen(
                     onTakeRandom = {
-                        viewmodel.takeRandom()
+                        viewModel.takeRandom()
                     },
                     onCekWin = { a, b ->
                         viewModel.cekWin(a, b)

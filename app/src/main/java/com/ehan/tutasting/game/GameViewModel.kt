@@ -28,7 +28,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun takeRandom(): Pilihan {
         return engine.takeRandom()
     }
-    fun cekWin(a: PlayerGame, b: PlayerGame): PlayerGame? {
+    fun cekWin(a: Pilihan, b: Pilihan): Pilihan? {
         return engine.cekWin(a, b)
     }
 }
