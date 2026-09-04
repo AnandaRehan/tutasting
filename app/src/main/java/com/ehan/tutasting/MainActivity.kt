@@ -138,9 +138,6 @@ fun greeting(
         when (screenPhase) {
             ScreenPhase.MAINMENU -> {
                 MainMenu(
-                    onCekWin = { (a, b) ->
-                        viewModel.cekWin(a, b)
-                    },
                     onStartGame = {
                         viewModel.startNewGame()
                     }
@@ -148,6 +145,9 @@ fun greeting(
              }
             ScreenPhase.PLAYING -> {
                 GameScreen(
+                    onCekWin = { (a, b) ->
+                        viewModel.cekWin(a, b)
+                    },
                     onMainMenu = {
                         viewModel.mainMenu()
                     }
