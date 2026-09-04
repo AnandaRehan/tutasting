@@ -54,16 +54,11 @@ fun MainMenu(
     modifier: Modifier = Modifier,
     onStartGame: () -> Unit
 ) {
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-    ) {
-        Button(
-            onClick = {
-                onStartGame()
-            }
-        ) {
-            Text(text = "Mulai")
+    Button(
+        onClick = {
+            onStartGame()
         }
+    ) {
+        Text(text = "Mulai")
     }
 }

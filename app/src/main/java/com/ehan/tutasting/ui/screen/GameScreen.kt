@@ -76,11 +76,6 @@ fun GameScreen(
     fun _refreshScreen() {
         refreshScreen = !refreshScreen
     }
-
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-    ) {
         if (dia == null) {
             Text(text = "Pilih")
             Button(
@@ -152,5 +147,5 @@ fun GameScreen(
         ) {
             Text(text = "Ke MainMenu")
         }
-    }
+    
 }
