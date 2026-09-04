@@ -137,13 +137,13 @@ fun GameScreen(
                     Text(text = "Ulang")
                 }
             } else {
-                resetGame()
+                viewModel.resetGame()
                 _refreshScreen()
             }
         }
         Button(
             onClick = {
-                resetGame()
+                viewModel.resetGame()
                 viewModel.toMainMenu()
                 _refreshScreen()
             }
