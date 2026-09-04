@@ -67,8 +67,8 @@ fun GameScreen(
 
     var refreshScreen: Boolean by rememberSaveable { mutableStateOf(false) }
 
-    var dia: Pilihan? = null
-    var bot: Pilihan? = null
+    var dia: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
+    var bot: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
 
     fun _refreshScreen() {
         refreshScreen = !refreshScreen
