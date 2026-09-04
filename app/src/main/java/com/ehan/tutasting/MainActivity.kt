@@ -89,6 +89,8 @@ import com.ehan.tutasting.game.GameEngine
 import com.ehan.tutasting.game.GameViewModel
 import com.ehan.tutasting.ui.screen.MainMenu
 import com.ehan.tutasting.ui.screen.GameScreen
+import com.ehan.tutasting.ui.screen.SplashScreen
+import com.ehan.tutasting.ui.screen.LoadingScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -137,6 +139,20 @@ fun greeting(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         when (screenPhase) {
+            ScreenPhase.SPLASH -> {
+                SplashScreen(
+                    onLoadingScreen = {
+                        viewModel.toLoadingScreen()
+                    }
+                )
+            }
+            ScreenPhase.LOADING -> {
+                LoadingScreen(
+                    onMainMenu = {
+                        viewModel.toMainMenu()
+                    }
+                )
+            }
             ScreenPhase.MAINMENU -> {
                 MainMenu(
                     onStartGame = {

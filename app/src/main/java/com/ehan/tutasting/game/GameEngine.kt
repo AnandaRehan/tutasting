@@ -12,7 +12,7 @@ import com.ehan.tutasting.model.Pilihan
 
 @Parcelize
 class GameEngine() : Parcelable {
-    private val _screenPhase = MutableStateFlow<ScreenPhase>(ScreenPhase.MAINMENU)
+    private val _screenPhase = MutableStateFlow<ScreenPhase>(ScreenPhase.SPLASH)
     val screenPhase: StateFlow<ScreenPhase> = _screenPhase.asStateFlow()
     
     private val _dia = MutableStateFlow<Pilihan?>(null)
@@ -28,6 +28,9 @@ class GameEngine() : Parcelable {
     fun resetGame() {
         setDia(null)
         setBot(null)
+    }
+    fun toLoadingScreen() {
+        _screenPhase.value = ScreenPhase.LOADING
     }
     fun toMainMenu() {
         _screenPhase.value = ScreenPhase.MAINMENU

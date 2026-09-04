@@ -52,11 +52,11 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun SplashScreen(
     modifier: Modifier = Modifier,
-    onLoadingScreen: () -> Unit
+    onMainMenu: () -> Unit
 ) {
     LaunchedEffect(Unit) {
         delay(2000L)
-        onLoadingScreen()
+        onMainMenu()
     }
-    Text(text = "Splash")
+    Text(text = "Loading")
 }
