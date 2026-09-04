@@ -133,7 +133,8 @@ fun greeting(
         modifier = Modifier
             .fillMaxSize()
             .systemBarsPadding()
-            .padding(21.dp)
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         when (screenPhase) {
             ScreenPhase.MAINMENU -> {

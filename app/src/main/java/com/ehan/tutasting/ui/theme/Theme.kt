@@ -43,8 +43,8 @@ fun TutastingTheme(
     val context = LocalContext.current
     val colorScheme = when {
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            // dynamicDarkColorScheme(context)
-            TutastingColorScheme
+            dynamicDarkColorScheme(context)
+            // TutastingColorScheme
         }
         else -> {
             TutastingColorScheme
