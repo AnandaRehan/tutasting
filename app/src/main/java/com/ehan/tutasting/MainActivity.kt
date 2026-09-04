@@ -132,7 +132,7 @@ fun greeting(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .systemBarsPadding()
+            .systemBarsPadding(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
