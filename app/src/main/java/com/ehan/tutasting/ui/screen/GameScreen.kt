@@ -109,18 +109,18 @@ fun GameScreen(
             }
         } else {
             viewModel.setBot(viewModel.takeRandom())
-            /**val pilihanDia = dia
-            val pilihanBot = bot*/
-            if (dia != null && bot != null) {
-                Text(text = "Pemain pilih ${dia.displayName}")
-                Text(text = "Bot Pilih ${bot.displayName}")
+            val pilihanDia = dia
+            val pilihanBot = bot
+            if (pilihanDia != null && pilihanBot != null) {
+                Text(text = "Pemain pilih ${pilihanDia.displayName}")
+                Text(text = "Bot Pilih ${pilihanBot.displayName}")
                 var tulisan: String = ""
 
-                when (viewModel.cekWin(dia, bot)) {
-                    dia -> {
+                when (viewModel.cekWin(pilihanDia, pilihanBot)) {
+                    pilihanDia -> {
                         tulisan = "Pemain Win"
                     }
-                    bot -> {
+                    pilihanBot -> {
                         tulisan = "Bot Win"
                     }
                     else -> {

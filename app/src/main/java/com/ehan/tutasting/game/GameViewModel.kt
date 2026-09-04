@@ -28,7 +28,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun resetGame() {
         engine.resetGame()
     }
-    fun mainMenu() {
+    fun toMainMenu() {
         engine.toMainMenu()
     }
     fun setDia(a: Pilihan?) {
