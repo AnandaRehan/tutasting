@@ -57,6 +57,7 @@ import com.ehan.tutasting.model.Pilihan
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier,
+    onTakeRandom: () -> Pilihan,
     onCekWin: (PlayerGame, PlayerGame) -> PlayerGame?,
     onMainMenu: () -> Unit
     // Cara alternatif jika ingin tetap ada nama labelnya
@@ -66,8 +67,8 @@ fun GameScreen(
 
     var refreshScreen: Boolean by rememberSaveable { mutableStateOf(false) }
 
-    var p1: PlayerGame by rememberSaveable { mutableStateOf<PlayerGame>(PlayerGame("P1")) }
-    var bot: PlayerGame by rememberSaveable { mutableStateOf<PlayerGame>(PlayerGame("BOT")) }
+    var dia: Pilihan? = null
+    var bot: Pilihan? = null
 
     fun _refreshScreen() {
         refreshScreen = !refreshScreen
@@ -77,24 +78,12 @@ fun GameScreen(
         modifier = modifier
             .fillMaxSize()
     ) {
-        if (p1.pilih == null) {
+        if (dia == null) {
             Text(text = "Pilih")
             Button(
                 onClick = {
-                    val listAngka: List<Int> = listOf(0, 1, 2)
-                    val angka: Int = listAngka.shuffled().random()
-                    bot.pilih = when (angka) {
-                        1 -> {
-                            Pilihan.KERTAS
-                        }
-                        2 -> {
-                            Pilihan.GUNTING
-                        }
-                        else -> {
-                            Pilihan.BATU
-                        }
-                    }
-                    p1.pilih = Pilihan.BATU
+                    bot = onTakeRandom()
+                    dia = Pilihan.BATU
                     _refreshScreen()
                 }
             ) {
@@ -102,20 +91,8 @@ fun GameScreen(
             }
             Button(
                 onClick = {
-                    val listAngka: List<Int> = listOf(0, 1, 2)
-                    val angka: Int = listAngka.shuffled().random()
-                    bot.pilih = when (angka) {
-                        1 -> {
-                            Pilihan.KERTAS
-                        }
-                        2 -> {
-                            Pilihan.GUNTING
-                        }
-                        else -> {
-                            Pilihan.BATU
-                        }
-                    }
-                    p1.pilih = Pilihan.KERTAS
+                    bot = onTakeRandom()
+                    dia = Pilihan.KERTAS
                     _refreshScreen()
                 }
             ) {
@@ -123,48 +100,24 @@ fun GameScreen(
             }
             Button(
                 onClick = {
-                    val listAngka: List<Int> = listOf(0, 1, 2)
-                    val angka: Int = listAngka.shuffled().random()
-                    bot.pilih = when (angka) {
-                        1 -> {
-                            Pilihan.KERTAS
-                        }
-                        2 -> {
-                            Pilihan.GUNTING
-                        }
-                        else -> {
-                            Pilihan.BATU
-                        }
-                    }
-                    p1.pilih = Pilihan.GUNTING
+                    bot = onTakeRandom()
+                    dia = Pilihan.GUNTING
                     _refreshScreen()
                 }
             ) {
                 Text(text = "GUNTING")
             }
         } else {
-            if (bot.pilih == null) {
-                val listAngka: List<Int> = listOf(0, 1, 2)
-                val angka: Int = listAngka.shuffled().random()
-                bot.pilih = when (angka) {
-                    1 -> {
-                        Pilihan.KERTAS
-                    }
-                    2 -> {
-                        Pilihan.GUNTING
-                    }
-                    else -> {
-                        Pilihan.BATU
-                    }
-                }
+            if (bot == null) {
+                bot = onTakeRandom()
             }
-            Text(text = "Pemain pilih $p1.pilih.label")
-            Text(text = "Bot Pilih $bot.pilih.label")
+            Text(text = "Pemain pilih $dia")
+            Text(text = "Bot Pilih $bot")
             var tulisan: String = ""
 
-            when (onCekWin(p1, bot)) {
-                p1 -> {
-                    tulisan = "P1 Win"
+            when (onCekWin(dia, bot)) {
+                dia -> {
+                    tulisan = "Pemain Win"
                 }
                 bot -> {
                     tulisan = "Bot Win"
@@ -176,8 +129,8 @@ fun GameScreen(
             Text(text = tulisan)
             Button(
                 onClick = {
-                    p1.pilih = null
-                    bot.pilih = null
+                    dia = null
+                    bot = null
                     _refreshScreen()
                 }
             ) {
@@ -186,8 +139,8 @@ fun GameScreen(
         }
         Button(
             onClick = {
-                p1.pilih = null
-                bot.pilih = null
+                dia = null
+                bot = null
                 onMainMenu()
                 _refreshScreen()
             }

@@ -22,18 +22,27 @@ class GameEngine() : Parcelable {
         _screenPhase.value = ScreenPhase.MAINMENU
     }
 
-    fun cekWin(a: PlayerGame, b: PlayerGame): PlayerGame? {
-        if (a.pilih == null && b.pilih == null) {
-            return null
-        } else if (a.pilih == null && b.pilih != null) {
-            return b
-        } else if (b.pilih == null && a.pilih != null) {
-            return a
+    fun takeRandom(): Pilihan {
+        val listAngka: List<Int> = listOf(0, 1, 2)
+        val angka: Int = listAngka.shuffled().random()
+        return when (angka) {
+            1 -> {
+                Pilihan.KERTAS
+            }
+            2 -> {
+                Pilihan.GUNTING
+            }
+            else -> {
+                Pilihan.BATU
+            }
         }
-        val cekA: Boolean = ((a.pilih == Pilihan.BATU && b.pilih == Pilihan.GUNTING) || (a.pilih == Pilihan.KERTAS && b.pilih == Pilihan.BATU) || (a.pilih == Pilihan.GUNTING && b.pilih == Pilihan.KERTAS))
-        val cekB: Boolean = ((b.pilih == Pilihan.BATU && a.pilih == Pilihan.GUNTING) || (b.pilih == Pilihan.KERTAS && a.pilih == Pilihan.BATU) || (b.pilih == Pilihan.GUNTING && a.pilih == Pilihan.KERTAS))
+    }
 
-        if (a.pilih == b.pilih) {
+    fun cekWin(a: Pilihan, b: Pilihan): Pilihan? {
+        val cekA: Boolean = ((a == Pilihan.BATU && b == Pilihan.GUNTING) || (a == Pilihan.KERTAS && b == Pilihan.BATU) || (a == Pilihan.GUNTING && b == Pilihan.KERTAS))
+        val cekB: Boolean = ((b == Pilihan.BATU && a == Pilihan.GUNTING) || (b == Pilihan.KERTAS && a == Pilihan.BATU) || (b == Pilihan.GUNTING && a == Pilihan.KERTAS))
+
+        if (a == b) {
             return null
         } else if (cekA) {
             return a

@@ -25,6 +25,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun mainMenu() {
         engine.toMainMenu()
     }
+    fun takeRandom(): Pilihan {
+        return engine.takeRandom()
+    }
     fun cekWin(a: PlayerGame, b: PlayerGame): PlayerGame? {
         return engine.cekWin(a, b)
     }

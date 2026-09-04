@@ -10,7 +10,6 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.platform.LocalContext
-import com.ehan.tutasting.ShowMessage
 // import androidx.compose.runtime.SideEffect
 // import androidx.compose.ui.graphics.toArgb
 // import androidx.compose.ui.platform.LocalContext
@@ -44,11 +43,10 @@ fun TutastingTheme(
     val context = LocalContext.current
     val colorScheme = when {
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            ShowMessage(context, "dynamic")
-            dynamicDarkColorScheme(context)
+            // dynamicDarkColorScheme(context)
+            TutastingColorScheme
         }
         else -> {
-            ShowMessage(context, "no dynamic")
             TutastingColorScheme
         }
     }
