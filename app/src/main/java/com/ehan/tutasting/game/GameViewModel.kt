@@ -28,6 +28,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     fun resetGame() {
         engine.resetGame()
     }
+    fun toLoadingScreen() {
+        engine.toLoadingScreen()
+    }
     fun toMainMenu() {
         engine.toMainMenu()
     }

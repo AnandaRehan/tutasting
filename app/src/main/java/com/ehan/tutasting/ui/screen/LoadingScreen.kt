@@ -48,9 +48,10 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.delay
 
 @Composable
-fun SplashScreen(
+fun LoadingScreen(
     modifier: Modifier = Modifier,
     onMainMenu: () -> Unit
 ) {
