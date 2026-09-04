@@ -57,7 +57,7 @@ import com.ehan.tutasting.model.Pilihan
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier,
-    onCekWin: (a: PlayerGame, b: PlayerGame): PlayerGame? -> Unit,
+    onCekWin: ((a: PlayerGame, b: PlayerGame) -> PlayerGame?),
     onMainMenu: () -> Unit
 ) {
     val context: Context = LocalContext.current
