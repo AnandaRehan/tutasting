@@ -24,7 +24,7 @@ data class PlayerGame(
 
 @Parcelize
 enum class Pilihan(
-    val label: String 
+    val label: String
 ) : Parcelable {
     BATU("Batu"),
     KERTAS("Kertas"),

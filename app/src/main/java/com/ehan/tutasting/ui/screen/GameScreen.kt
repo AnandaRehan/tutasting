@@ -51,24 +51,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlin.random.Random
 import com.ehan.tutasting.ShowMessage
+import com.ehan.tutasting.game.GameViewModel
 import com.ehan.tutasting.model.PlayerGame
 import com.ehan.tutasting.model.Pilihan
 
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier,
-    onTakeRandom: () -> Pilihan,
-    onCekWin: (Pilihan, Pilihan) -> Pilihan?,
-    onMainMenu: () -> Unit
+    viewModel: GameViewModel
     // Cara alternatif jika ingin tetap ada nama labelnya
 // onCekWin: ((a: PlayerGame, b: PlayerGame) -> PlayerGame?), 
 ) {
     val context: Context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    val screenPhase by viewModel.screenPhase.collectAsStateWithLifecycle(lifecycleOwner = lifecycleOwner)
 
     var refreshScreen: Boolean by rememberSaveable { mutableStateOf(false) }
 
-    var dia: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
-    var bot: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
+    val dia by viewModel.dia.collectAsStateWithLifecycle(lifecycleOwner = lifecycleOwner)
+    val bot by viewModel.bot.collectAsStateWithLifecycle(lifecycleOwner = lifecycleOwner)
 
     fun _refreshScreen() {
         refreshScreen = !refreshScreen
@@ -82,7 +84,7 @@ fun GameScreen(
             Text(text = "Pilih")
             Button(
                 onClick = {
-                    dia = Pilihan.BATU
+                    viewModel.setDia(Pilihan.BATU)
                     _refreshScreen()
                 }
             ) {
@@ -90,7 +92,7 @@ fun GameScreen(
             }
             Button(
                 onClick = {
-                    dia = Pilihan.KERTAS
+                    viewModel.setDia(Pilihan.KERTAS)
                     _refreshScreen()
                 }
             ) {
@@ -98,22 +100,22 @@ fun GameScreen(
             }
             Button(
                 onClick = {
-                    dia = Pilihan.GUNTING
+                    viewModel.setDia(Pilihan.GUNTING)
                     _refreshScreen()
                 }
             ) {
                 Text(text = "GUNTING")
             }
         } else {
-            bot = onTakeRandom()
-            val pilihanDia = dia
-            val pilihanBot = bot
-            if (pilihanDia != null && pilihanBot != null) {
-                Text(text = "Pemain pilih $pilihanDia.label")
-                Text(text = "Bot Pilih $pilihanBot.label")
+            viewModel.setBot(viewModel.takeRandom())
+            /**val pilihanDia = dia
+            val pilihanBot = bot*/
+            if (dia != null && bot != null) {
+                Text(text = "Pemain pilih ${dia.label}")
+                Text(text = "Bot Pilih ${bot.label}")
                 var tulisan: String = ""
 
-                when (onCekWin(pilihanDia, pilihanBot)) {
+                when (viewModel.cekWin(dia, bot)) {
                     dia -> {
                         tulisan = "Pemain Win"
                     }
@@ -127,24 +129,21 @@ fun GameScreen(
                 Text(text = tulisan)
                 Button(
                     onClick = {
-                        dia = null
-                        bot = null
+                        viewModel.resetGame()
                         _refreshScreen()
                     }
                 ) {
                     Text(text = "Ulang")
                 }
             } else {
-                dia = null
-                bot = null
+                resetGame()
                 _refreshScreen()
             }
         }
         Button(
             onClick = {
-                dia = null
-                bot = null
-                onMainMenu()
+                resetGame()
+                viewModel.toMainMenu()
                 _refreshScreen()
             }
         ) {

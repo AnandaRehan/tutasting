@@ -12,16 +12,32 @@ import com.ehan.tutasting.model.Pilihan
 
 @Parcelize
 class GameEngine() : Parcelable {
-    private val _screenPhase = MutableStateFlow(ScreenPhase.MAINMENU)
+    private val _screenPhase = MutableStateFlow<ScreenPhase>(ScreenPhase.MAINMENU)
     val screenPhase: StateFlow<ScreenPhase> = _screenPhase.asStateFlow()
+    
+    private val _dia = MutableStateFlow<Pilihan?>(null)
+    val dia: StateFlow<Pilihan?> = _dia.asStateFlow()
+    
+    private val _bot = MutableStateFlow<Pilihan?>(null)
+    val bot: StateFlow<Pilihan?> = _bot.asStateFlow()
 
     fun startNewGame() {
+        resetGame()
         _screenPhase.value = ScreenPhase.PLAYING
+    }
+    fun resetGame() {
+        setDia(null)
+        setBot(null)
     }
     fun toMainMenu() {
         _screenPhase.value = ScreenPhase.MAINMENU
     }
-
+    fun setDia(a: Pilihan?) {
+        _dia.value = a
+    }
+    fun setBot(a: Pilihan?) {
+        _bot.value = a
+    }
     fun takeRandom(): Pilihan {
         val listAngka: List<Int> = listOf(0, 1, 2)
         val angka: Int = listAngka.shuffled().random()

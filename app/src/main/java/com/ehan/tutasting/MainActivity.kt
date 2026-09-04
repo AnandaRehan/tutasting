@@ -144,17 +144,7 @@ fun greeting(
                 )
              }
             ScreenPhase.PLAYING -> {
-                GameScreen(
-                    onTakeRandom = {
-                        viewModel.takeRandom()
-                    },
-                    onCekWin = { a, b ->
-                        viewModel.cekWin(a, b)
-                    },
-                    onMainMenu = {
-                        viewModel.mainMenu()
-                    }
-                )
+                GameScreen(viewModel = viewModel)
             }
             else -> {
                 Text(text = "else")

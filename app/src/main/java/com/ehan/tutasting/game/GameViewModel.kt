@@ -19,11 +19,23 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     val screenPhase = engine.screenPhase
 
+    val dia = engine.dia
+    val bot = engine.bot
+
     fun startNewGame() {
         engine.startNewGame()
     }
+    fun resetGame() {
+        engine.resetGame()
+    }
     fun mainMenu() {
         engine.toMainMenu()
+    }
+    fun setDia(a: Pilihan?) {
+        engine.setDia(a)
+    }
+    fun setBot(a: Pilihan?) {
+        engine.setBot(a)
     }
     fun takeRandom(): Pilihan {
         return engine.takeRandom()
