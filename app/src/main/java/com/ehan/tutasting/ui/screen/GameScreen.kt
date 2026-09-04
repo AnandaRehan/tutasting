@@ -49,6 +49,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlin.random.Random
 import com.ehan.tutasting.ShowMessage
 import com.ehan.tutasting.game.GameViewModel
@@ -111,8 +112,8 @@ fun GameScreen(
             /**val pilihanDia = dia
             val pilihanBot = bot*/
             if (dia != null && bot != null) {
-                Text(text = "Pemain pilih ${dia.label}")
-                Text(text = "Bot Pilih ${bot.label}")
+                Text(text = "Pemain pilih ${dia.displayName}")
+                Text(text = "Bot Pilih ${bot.displayName}")
                 var tulisan: String = ""
 
                 when (viewModel.cekWin(dia, bot)) {
