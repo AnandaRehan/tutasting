@@ -85,6 +85,7 @@ fun GameScreen(
             Text(text = "Pilih")
             Button(
                 onClick = {
+                    viewModel.setBot(viewModel.takeRandom())
                     viewModel.setDia(Pilihan.BATU)
                     _refreshScreen()
                 }
@@ -93,6 +94,7 @@ fun GameScreen(
             }
             Button(
                 onClick = {
+                    viewModel.setBot(viewModel.takeRandom())
                     viewModel.setDia(Pilihan.KERTAS)
                     _refreshScreen()
                 }
@@ -101,6 +103,7 @@ fun GameScreen(
             }
             Button(
                 onClick = {
+                    viewModel.setBot(viewModel.takeRandom())
                     viewModel.setDia(Pilihan.GUNTING)
                     _refreshScreen()
                 }
@@ -108,7 +111,6 @@ fun GameScreen(
                 Text(text = "GUNTING")
             }
         } else {
-            viewModel.setBot(viewModel.takeRandom())
             val pilihanDia = dia
             val pilihanBot = bot
             if (pilihanDia != null && pilihanBot != null) {
