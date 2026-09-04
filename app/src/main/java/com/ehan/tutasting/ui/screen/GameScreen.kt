@@ -82,7 +82,6 @@ fun GameScreen(
             Text(text = "Pilih")
             Button(
                 onClick = {
-                    bot = onTakeRandom()
                     dia = Pilihan.BATU
                     _refreshScreen()
                 }
@@ -91,7 +90,6 @@ fun GameScreen(
             }
             Button(
                 onClick = {
-                    bot = onTakeRandom()
                     dia = Pilihan.KERTAS
                     _refreshScreen()
                 }
@@ -100,7 +98,6 @@ fun GameScreen(
             }
             Button(
                 onClick = {
-                    bot = onTakeRandom()
                     dia = Pilihan.GUNTING
                     _refreshScreen()
                 }
@@ -108,33 +105,39 @@ fun GameScreen(
                 Text(text = "GUNTING")
             }
         } else {
-            if (bot == null) {
-                bot = onTakeRandom()
-            }
-            Text(text = "Pemain pilih $dia")
-            Text(text = "Bot Pilih $bot")
-            var tulisan: String = ""
+            bot = onTakeRandom()
+            val pilihanDia = dia
+            val pilihanBot = bot
+            if (pilihanDia != null && pilihanBot != null) {
+                Text(text = "Pemain pilih $pilihanDia.label")
+                Text(text = "Bot Pilih $pilihanBot.label")
+                var tulisan: String = ""
 
-            when (onCekWin(dia, bot)) {
-                dia -> {
-                    tulisan = "Pemain Win"
+                when (onCekWin(pilihanDia, pilihanBot)) {
+                    dia -> {
+                        tulisan = "Pemain Win"
+                    }
+                    bot -> {
+                        tulisan = "Bot Win"
+                    }
+                    else -> {
+                        tulisan = "Draw"
+                    }
                 }
-                bot -> {
-                    tulisan = "Bot Win"
+                Text(text = tulisan)
+                Button(
+                    onClick = {
+                        dia = null
+                        bot = null
+                        _refreshScreen()
+                    }
+                ) {
+                    Text(text = "Ulang")
                 }
-                else -> {
-                    tulisan = "Draw"
-                }
-            }
-            Text(text = tulisan)
-            Button(
-                onClick = {
-                    dia = null
-                    bot = null
-                    _refreshScreen()
-                }
-            ) {
-                Text(text = "Ulang")
+            } else {
+                dia = null
+                bot = null
+                _refreshScreen()
             }
         }
         Button(
