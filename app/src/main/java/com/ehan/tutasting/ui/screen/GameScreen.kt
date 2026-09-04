@@ -104,6 +104,7 @@ fun GameScreen(
                         else -> {
                             Pilihan.BATU
                         }
+                    }
                     p1.pilih = Pilihan.KERTAS
                 }
             ) {
@@ -123,6 +124,7 @@ fun GameScreen(
                         else -> {
                             Pilihan.BATU
                         }
+                    }
                     p1.pilih = Pilihan.GUNTING
                 }
             ) {

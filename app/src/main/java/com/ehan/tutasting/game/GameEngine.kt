@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.parcelize.Parcelize
 import com.ehan.tutasting.model.ScreenPhase
 import com.ehan.tutasting.model.PlayerGame
+import com.ehan.tutasting.model.Pilihan
 
 
 @Parcelize

@@ -17,7 +17,7 @@ enum class ScreenPhase() : Parcelable {
 
 @Parcelize
 data class PlayerGame(
-    val name: String
+    val name: String,
     var pilih: Pilihan? = null
 ) : Parcelable
 
