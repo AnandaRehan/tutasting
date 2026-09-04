@@ -57,8 +57,10 @@ import com.ehan.tutasting.model.Pilihan
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier,
-    onCekWin: ((a: PlayerGame, b: PlayerGame) -> PlayerGame?),
+    onCekWin: (PlayerGame, PlayerGame) -> PlayerGame?,
     onMainMenu: () -> Unit
+    // Cara alternatif jika ingin tetap ada nama labelnya
+// onCekWin: ((a: PlayerGame, b: PlayerGame) -> PlayerGame?), 
 ) {
     val context: Context = LocalContext.current
     var p1: PlayerGame by rememberSaveable { mutableStateOf<PlayerGame>(PlayerGame("P1")) }

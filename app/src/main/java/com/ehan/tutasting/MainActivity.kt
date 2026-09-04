@@ -146,7 +146,7 @@ fun greeting(
             ScreenPhase.PLAYING -> {
                 GameScreen(
                     onCekWin = { (a, b) ->
-                        viewModel.cekWin(a, b)
+                        return viewModel.cekWin(a, b)
                     },
                     onMainMenu = {
                         viewModel.mainMenu()
