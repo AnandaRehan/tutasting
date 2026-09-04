@@ -63,8 +63,15 @@ fun GameScreen(
 // onCekWin: ((a: PlayerGame, b: PlayerGame) -> PlayerGame?), 
 ) {
     val context: Context = LocalContext.current
+
+    var refreshScreen: Boolean by rememberSaveable { mutableStateOf(false) }
+
     var p1: PlayerGame by rememberSaveable { mutableStateOf<PlayerGame>(PlayerGame("P1")) }
     var bot: PlayerGame by rememberSaveable { mutableStateOf<PlayerGame>(PlayerGame("BOT")) }
+
+    fun _refreshScreen() {
+        refreshScreen = !refreshScreen
+    }
 
     Column(
         modifier = modifier
@@ -88,6 +95,7 @@ fun GameScreen(
                         }
                     }
                     p1.pilih = Pilihan.BATU
+                    _refreshScreen()
                 }
             ) {
                 Text(text = "Batu")
@@ -108,6 +116,7 @@ fun GameScreen(
                         }
                     }
                     p1.pilih = Pilihan.KERTAS
+                    _refreshScreen()
                 }
             ) {
                 Text(text = "KERTAS")
@@ -128,6 +137,7 @@ fun GameScreen(
                         }
                     }
                     p1.pilih = Pilihan.GUNTING
+                    _refreshScreen()
                 }
             ) {
                 Text(text = "GUNTING")
@@ -168,6 +178,7 @@ fun GameScreen(
                 onClick = {
                     p1.pilih = null
                     bot.pilih = null
+                    _refreshScreen()
                 }
             ) {
                 Text(text = "Ulang")
@@ -178,6 +189,7 @@ fun GameScreen(
                 p1.pilih = null
                 bot.pilih = null
                 onMainMenu()
+                _refreshScreen()
             }
         ) {
             Text(text = "Ke MainMenu")
