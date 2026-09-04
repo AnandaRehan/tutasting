@@ -113,3 +113,17 @@ val HealthRed = BentoHealthRed
 val HealthGreen = BentoHealthGreen
 val ExpBlue = BentoExpBlue
 val ExpBlueGlow = BentoAccentGlow
+
+val PolishSurfaceDark = Color(0xFF141218)
+val PolishSurfaceVariantDark = Color(0xFF49454F)
+val PolishOnSurfaceDark = Color(0xFFE6E1E5)
+val PolishOnSurfaceVariantDark = Color(0xFFCAC4D0)
+val PolishOutlineDark = Color(0xFF938F99)
+val PolishOutlineVariantDark = Color(0xFF49454F)
+val PolishNavBackgroundDark = Color(0xFF1D1B20)
+val PolishActivePillDark = Color(0xFF4A4458)
+
+val IndigoPrimary = Color(0xFF4F46E5)
+val EmeraldPrimary = Color(0xFF059669)
+val SunsetPrimary = Color(0xFFEA580C)
+val VioletPrimary = Color(0xFF7C3AED)

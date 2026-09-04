@@ -16,19 +16,17 @@ enum class ScreenPhase() : Parcelable {
 
 
 @Parcelize
-enum class PlayerGame(
-    val displayName: String
-) : Parcelable {
-    PLAYER1("PLAYER 1"),
-    PLAYER2("PLAYER 2");
-}
+data class PlayerGame(
+    val name: String
+    var pilih: Pilihan? = null
+) : Parcelable
+
 
 @Parcelize
 enum class Pilihan(
-    val displayName: String,
-    val code: String
+    val label: String 
 ) : Parcelable {
-    BATU("BATU", "A"),
-    KERTAS("KERTAS", "B"),
-    GUNTING("GUNTING", "C");
+    BATU("Batu"),
+    KERTAS("Kertas"),
+    GUNTING("Gunting");
 }

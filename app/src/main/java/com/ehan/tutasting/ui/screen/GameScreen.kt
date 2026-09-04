@@ -49,74 +49,121 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlin.random.Random
 import com.ehan.tutasting.ShowMessage
+import com.ehan.tutasting.model.PlayerGame
 import com.ehan.tutasting.model.Pilihan
 
 @Composable
 fun GameScreen(
     modifier: Modifier = Modifier,
+    onCekWin: (a: PlayerGame, b: PlayerGame): PlayerGame? -> Unit,
     onMainMenu: () -> Unit
 ) {
     val context: Context = LocalContext.current
-    var p1: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
-    var p2: Pilihan? by rememberSaveable { mutableStateOf<Pilihan?>(null) }
+    var p1: PlayerGame by rememberSaveable { mutableStateOf<PlayerGame>(PlayerGame("P1")) }
+    var bot: PlayerGame by rememberSaveable { mutableStateOf<PlayerGame>(PlayerGame("BOT")) }
 
     Column(
         modifier = modifier
             .fillMaxSize()
     ) {
-        if (p1 == null || p2 == null) {
-            Text(text = if (p1 == null) { "Player 1"} else { "Player 2" })
+        if (p1.pilih == null) {
+            Text(text = "Pilih")
             Button(
                 onClick = {
-                    if (p1 == null) {
-                        p1 = Pilihan.BATU
-                    } else {
-                        p2 = Pilihan.BATU
+                    val listAngka: List<Int> = listOf(0, 1, 2)
+                    val angka: Int = listAngka.shuffled().random()
+                    bot.pilih = when (angka) {
+                        1 -> {
+                            Pilihan.KERTAS
+                        }
+                        2 -> {
+                            Pilihan.GUNTING
+                        }
+                        else -> {
+                            Pilihan.BATU
+                        }
                     }
+                    p1.pilih = Pilihan.BATU
                 }
             ) {
                 Text(text = "Batu")
             }
             Button(
                 onClick = {
-                    if (p1 == null) {
-                        p1 = Pilihan.KERTAS
-                    } else {
-                        p2 = Pilihan.KERTAS
-                    }
+                    val listAngka: List<Int> = listOf(0, 1, 2)
+                    val angka: Int = listAngka.shuffled().random()
+                    bot.pilih = when (angka) {
+                        1 -> {
+                            Pilihan.KERTAS
+                        }
+                        2 -> {
+                            Pilihan.GUNTING
+                        }
+                        else -> {
+                            Pilihan.BATU
+                        }
+                    p1.pilih = Pilihan.KERTAS
                 }
             ) {
                 Text(text = "KERTAS")
             }
             Button(
                 onClick = {
-                    if (p1 == null) {
-                        p1 = Pilihan.GUNTING
-                    } else {
-                        p2 = Pilihan.GUNTING
-                    }
+                    val listAngka: List<Int> = listOf(0, 1, 2)
+                    val angka: Int = listAngka.shuffled().random()
+                    bot.pilih = when (angka) {
+                        1 -> {
+                            Pilihan.KERTAS
+                        }
+                        2 -> {
+                            Pilihan.GUNTING
+                        }
+                        else -> {
+                            Pilihan.BATU
+                        }
+                    p1.pilih = Pilihan.GUNTING
                 }
             ) {
                 Text(text = "GUNTING")
             }
         } else {
-            Text(text = "P1 " + p1.toString())
-            Text(text = "P2 " + p2.toString())
+            if (bot.pilih == null) {
+                val listAngka: List<Int> = listOf(0, 1, 2)
+                val angka: Int = listAngka.shuffled().random()
+                bot.pilih = when (angka) {
+                    1 -> {
+                        Pilihan.KERTAS
+                    }
+                    2 -> {
+                        Pilihan.GUNTING
+                    }
+                    else -> {
+                        Pilihan.BATU
+                    }
+                }
+            }
+            Text(text = "Pemain pilih $p1.pilih.label")
+            Text(text = "Bot Pilih $bot.pilih.label")
             var tulisan: String = ""
 
-            if ((p1 == Pilihan.BATU && p2 == Pilihan.GUNTING) || (p1 == Pilihan.KERTAS && p2 == Pilihan.BATU) || (p1 == Pilihan.GUNTING && p2 == Pilihan.KERTAS)) {
-                tulisan = "P1 Win"
-            } else if (p1 != p2) {
-                tulisan = "P2 Win"
-            } else {
-                tulisan = "Draw"
+            when (onCekWin(p1, bot)) {
+                p1 -> {
+                    tulisan = "P1 Win"
+                }
+                bot -> {
+                    tulisan = "Bot Win"
+                }
+                else {
+                    tulisan = "Draw"
+                }
             }
             Text(text = tulisan)
             Button(
                 onClick = {
-                    p1 = null
-                    p2 = null
+                    p1.pilih = null
+                    bot.pilih = null
                 }
             ) {
                 Text(text = "Ulang")
@@ -124,8 +171,8 @@ fun GameScreen(
         }
         Button(
             onClick = {
-                p1 = null
-                p2 = null
+                p1.pilih = null
+                bot.pilih = null
                 onMainMenu()
             }
         ) {
