@@ -157,7 +157,7 @@ fun GameScreen(
                 bot -> {
                     tulisan = "Bot Win"
                 }
-                else {
+                else -> {
                     tulisan = "Draw"
                 }
             }
